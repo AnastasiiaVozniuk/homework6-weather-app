@@ -84,7 +84,7 @@ function formatDay(date) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let currentDate = day.getDate();
+  let currentDate = date.getDate();
   let months = [
     "January",
     "February",
@@ -99,10 +99,9 @@ function formatDay(date) {
     "November",
     "December",
   ];
-  let month = months[day.getMonth()];
-  let year = day.getFullYear();
-  return `${day}, ${hours}:${minutes}`;
-  return `${currentDate} ${month} ${year}`;
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+  return `${day}, ${hours}:${minutes}</br>${currentDate} ${month} ${year}`;
 }
 
 document.querySelector("#time").innerHTML = formatDay(new Date());
