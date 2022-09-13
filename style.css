@@ -40,6 +40,7 @@ a {
 .description {
   font-size: 40px;
   padding: 20px;
+  text-transform: capitalize;
 }
 .description small {
   position: relative;
