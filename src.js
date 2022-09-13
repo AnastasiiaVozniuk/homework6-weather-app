@@ -1,5 +1,4 @@
 function displayTemperature(response) {
-  console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
@@ -18,10 +17,93 @@ function displayTemperature(response) {
   humiditylement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
 }
-
 apiKey = "bf90d790470a54580c421cafda702bd7";
 apiUrlMain = "https://api.openweathermap.org/data/2.5/weather?";
-apiUrlEnd = `q=Boston&appid=${apiKey}&units=metric`;
+let city = "New York";
+apiUrlEnd = `q=${city}&appid=${apiKey}&units=metric`;
 apiUrl = `${apiUrlMain}${apiUrlEnd}`;
 
 axios.get(apiUrl).then(displayTemperature);
+
+function formatDate(date) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let currentDate = date.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+  return `${day}, ${hours}:${minutes}`;
+}
+document.querySelector("#time").innerHTML = formatDate(new Date());
+function formatDay(date) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let currentDate = day.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[day.getMonth()];
+  let year = day.getFullYear();
+  return `${day}, ${hours}:${minutes}`;
+  return `${currentDate} ${month} ${year}`;
+}
+
+document.querySelector("#time").innerHTML = formatDay(new Date());
+document.querySelector("#date").innerHTML = formatDay(new Date());
