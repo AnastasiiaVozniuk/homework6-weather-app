@@ -1,5 +1,6 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fd7e14;
   max-width: 800px;
   margin: 50px auto;
   background-image: url(images/sky.jpeg);
@@ -14,14 +15,34 @@ body {
   border-radius: 5px;
 }
 h1 {
-  color: #fd7e14;
   font-size: 40px;
+  padding: 20px;
   text-shadow: 3px 3px 6px #2c2825;
 }
 h2 {
-  color: #fd7e14;
-  font-size: 32px;
-  text-shadow: 3px 3px 8px #2c2825;
+  font-size: 36px;
   margin: 0;
   padding: 0;
+  text-shadow: 3px 3px 6px #2c2825;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  font-weight: 600;
+  font-size: 22px;
+}
+a {
+  text-decoration: none;
+}
+.description {
+  font-size: 40px;
+  padding: 20px;
+}
+.description small {
+  position: relative;
+  font-size: 20px;
+  top: -18px;
 }
