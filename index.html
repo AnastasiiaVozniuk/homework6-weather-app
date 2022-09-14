@@ -17,23 +17,44 @@
   <body>
     <div class="conteiner">
       <div class="weather-app">
+        <form id="search-form">
+          <div class="row">
+            <div class="col-9">
+              <input
+                type="search"
+                placeholder="Type a city name..."
+                autocomplete="off"
+                class="form-control"
+                id="city-input"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="Search"
+                class="btn btn-primary w-100"
+              />
+            </div>
+          </div>
+        </form>
         <h3>
           <div>
-            <strong id="time"></strong></br></strong>
+            <strong id="time"></strong>
+            <br />
           </div>
         </h3>
         <div class="row">
-          <div class="col-5">
+          <div class="col-6">
             <h1 id="city">San Francisco</h1>
           </div>
-          <div class="col-7">
+          <div class="col-6">
             <h2 class="description">
               <span id="description">clouds</span>
               <span id="temperature">25</span>
               <small>°C | <a href="#"> °F </a></small>
             </h2>
           </div>
-          <div class="col-6">
+          <div class="col-5">
             <ul>
               <li>Temp min: <span id="minTemp"></span> °C</li>
               <li>Temp max: <span id="maxTemp"></span> °C</li>
@@ -42,7 +63,7 @@
               <li>Wind speed: <span id="windSpeed"></span> Km/H</li>
             </ul>
           </div>
-          <div class="col-6">
+          <div class="col-7">
             <ul>
               <li>Next days</li>
               <li>25°C Sunny Saturday 07.02.22</li>

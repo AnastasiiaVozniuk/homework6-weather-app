@@ -10,20 +10,30 @@ function displayTemperature(response) {
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].description;
+  descriptionElement.innerHTML = response.data.weather[0].main;
   minTempElement.innerHTML = Math.round(response.data.main.temp_min);
   maxTempElement.innerHTML = Math.round(response.data.main.temp_max);
   feelsTempElement.innerHTML = Math.round(response.data.main.feels_like);
   humiditylement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
 }
-apiKey = "bf90d790470a54580c421cafda702bd7";
-apiUrlMain = "https://api.openweathermap.org/data/2.5/weather?";
-let city = "New York";
-apiUrlEnd = `q=${city}&appid=${apiKey}&units=metric`;
-apiUrl = `${apiUrlMain}${apiUrlEnd}`;
 
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+  apiKey = "bf90d790470a54580c421cafda702bd7";
+  apiUrlMain = "https://api.openweathermap.org/data/2.5/weather?";
+  apiUrlEnd = `q=${city}&appid=${apiKey}&units=metric`;
+  apiUrl = `${apiUrlMain}${apiUrlEnd}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+search("New York");
+
+function submitForm(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", submitForm);
 
 function formatDate(date) {
   let days = [
