@@ -57,3 +57,6 @@ a {
 .celcius-link:hover {
   text-decoration: none;
 }
+img {
+  font-weight: 900;
+}
