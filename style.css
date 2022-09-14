@@ -60,3 +60,14 @@ a {
 img {
   font-weight: 900;
 }
+.link {
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.work-signature {
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+}
