@@ -49,3 +49,11 @@ a {
   font-size: 20px;
   top: -18px;
 }
+
+.active {
+  color: #fd7e14;
+  cursor: default;
+}
+.celcius-link:hover {
+  text-decoration: none;
+}
