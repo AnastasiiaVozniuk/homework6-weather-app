@@ -3,7 +3,7 @@ body {
   color: #fd7e14;
   max-width: 850px;
   margin: 50px auto;
-  background-image: url(images/wind2.jpeg);
+  background-image: url(images/sky.jpeg);
   background-size: 100%;
 }
 
@@ -74,13 +74,15 @@ img {
 .weather-forecast {
   font-weight: 700;
   font-size: 22px;
-  color: black;
+  color: #fd7e14;
   text-align: center;
 }
 .weather-forecast-temperature {
   font-size: 20px;
+  color: black;
 }
 .weather-forecast-temperature-min {
   opacity: 0.6;
   font-size: 20px;
+  color: black;
 }

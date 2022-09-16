@@ -1,3 +1,31 @@
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">  
+    <div class="next-days">${day}</div>
+    <div>
+    <img
+    id="forecast-img"
+    src="http://openweathermap.org/img/wn/10d@2x.png"
+    alt=""
+    width="46"
+    />
+    </div>
+    <div class="weather-forecast-temperature">
+    <span class="weeather-forecast-temperature-max"> 25° </span>
+    <span class="weather-forecast-temperature-min"> 12° </span>
+    </div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -8,7 +36,7 @@ function displayTemperature(response) {
   let humiditylement = document.querySelector("#humidity");
   let windElement = document.querySelector("#windSpeed");
   let iconElement = document.querySelector("#icon");
-  
+
   celciusTemperature = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(celciusTemperature);
@@ -68,6 +96,7 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitForm);
 
 search("New York");
+displayForecast();
 
 function formatDate(date) {
   let days = [
