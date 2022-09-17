@@ -1,31 +1,46 @@
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return day;
+}
+
 function displayForecast(response) {
   console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">  
-    <div class="next-days">${day}</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">  
+    <div class="next-days"> ${formatDay(forecastDay.dt)}</div>
     <div>
     <img
     id="forecast-img"
-    src="http://openweathermap.org/img/wn/10d@2x.png"
+    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
     alt=""
     width="46"
     />
     </div>
     <div class="weather-forecast-temperature">
-    <span class="weeather-forecast-temperature-max"> 25° </span>
-    <span class="weather-forecast-temperature-min"> 12° </span>
+    <span class="weeather-forecast-temperature-max">${Math.round(
+      forecastDay.temp.max
+    )}° </span>
+    <span class="weather-forecast-temperature-min"> ${Math.round(
+      forecastDay.temp.min
+    )}° </span>
     </div>
     </div>
     `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
 function getForecast(coordinates) {
   apiKey = "bf90d790470a54580c421cafda702bd7";
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
@@ -42,9 +57,7 @@ function displayTemperature(response) {
   let humiditylement = document.querySelector("#humidity");
   let windElement = document.querySelector("#windSpeed");
   let iconElement = document.querySelector("#icon");
-
   celciusTemperature = response.data.main.temp;
-
   temperatureElement.innerHTML = Math.round(celciusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].main;
@@ -115,46 +128,6 @@ function formatDate(date) {
     "Saturday",
   ];
   let day = days[date.getDay()];
-
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  let currentDate = date.getDate();
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[date.getMonth()];
-  let year = date.getFullYear();
-  return `${day}, ${hours}:${minutes}`;
-}
-document.querySelector("#time").innerHTML = formatDate(new Date());
-function formatDay(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[date.getDay()];
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -183,5 +156,5 @@ function formatDay(date) {
   return `${day}, ${hours}:${minutes}</br>${currentDate} ${month} ${year}`;
 }
 
-document.querySelector("#time").innerHTML = formatDay(new Date());
-document.querySelector("#date").innerHTML = formatDay(new Date());
+document.querySelector("#time").innerHTML = formatDate(new Date());
+document.querySelector("#date").innerHTML = formatDate(new Date());
